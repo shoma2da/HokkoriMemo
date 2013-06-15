@@ -13,12 +13,12 @@ public class PresentSQLiteDetailData extends SQLiteDetailData {
 
     @Override
     public String getTitle() {
-        return getContext().getString(R.string.present);
+        return getContext().getString(R.string.present).replaceAll("\n", "");
     }
 
     @Override
     public int getImageResourceId() {
-        return android.R.drawable.ic_dialog_map;
+        return R.drawable.icon_present;
     }
 
     @Override

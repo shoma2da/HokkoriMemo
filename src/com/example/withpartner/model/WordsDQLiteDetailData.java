@@ -13,12 +13,12 @@ public class WordsDQLiteDetailData extends SQLiteDetailData {
 
     @Override
     public String getTitle() {
-        return getContext().getString(R.string.words);
+        return getContext().getString(R.string.words).replaceAll("\n", "");
     }
 
     @Override
     public int getImageResourceId() {
-        return android.R.drawable.ic_btn_speak_now;
+        return R.drawable.icon_words;
     }
 
     @Override

@@ -13,12 +13,12 @@ public class LaughSQLiteDetailData extends SQLiteDetailData {
 
     @Override
     public String getTitle() {
-        return getContext().getString(R.string.laugh);
+        return getContext().getString(R.string.laugh).replace("\n", "");
     }
 
     @Override
     public int getImageResourceId() {
-        return android.R.drawable.ic_dialog_email;
+        return R.drawable.icon_laugh;
     }
 
     @Override

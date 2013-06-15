@@ -13,12 +13,12 @@ public class FamilySQliteDetailData extends SQLiteDetailData {
 
     @Override
     public String getTitle() {
-        return getContext().getString(R.string.family);
+        return getContext().getString(R.string.family).replaceAll("\n", "");
     }
 
     @Override
     public int getImageResourceId() {
-        return android.R.drawable.ic_dialog_dialer;
+        return R.drawable.icon_family;
     }
 
     @Override

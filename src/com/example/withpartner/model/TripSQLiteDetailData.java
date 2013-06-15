@@ -14,12 +14,12 @@ public class TripSQLiteDetailData extends SQLiteDetailData {
 
     @Override
     public String getTitle() {
-        return getContext().getString(R.string.trip);
+        return getContext().getString(R.string.trip).replaceAll("\n", "");
     }
 
     @Override
     public int getImageResourceId() {
-        return android.R.drawable.ic_menu_view;
+        return R.drawable.icon_trip;
     }
 
     @Override

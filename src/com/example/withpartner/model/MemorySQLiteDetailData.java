@@ -13,12 +13,12 @@ public class MemorySQLiteDetailData extends SQLiteDetailData {
 
     @Override
     public String getTitle() {
-        return getContext().getString(R.string.memory);
+        return getContext().getString(R.string.memory).replaceAll("\n", "");
     }
 
     @Override
     public int getImageResourceId() {
-        return android.R.drawable.ic_menu_week;
+        return R.drawable.icon_memory;
     }
 
     @Override
