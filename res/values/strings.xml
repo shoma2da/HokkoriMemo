@@ -5,12 +5,12 @@
     
     <string name="title">パートナーとしたいこと</string>
 
-    <string name="trip">おでかけする</string>
-    <string name="family">家族と楽しむ</string>
-    <string name="words">感謝を伝える</string>
-    <string name="laugh">一緒に笑う</string>
-    <string name="present">プレゼントを贈りあう</string>
-    <string name="memory">思い出を振り返る</string>
+    <string name="trip">おでかけ\nする</string>
+    <string name="family">他の家族と\n過ごす</string>
+    <string name="words">感謝を\n伝える</string>
+    <string name="laugh">一緒に\n笑う</string>
+    <string name="present">贈り物を\n贈りあう</string>
+    <string name="memory">思い出を\n振り返る</string>
     
     <string name="hokkori">ほっこり</string>
     <string name="hokkori_count">%1$d回ほっこりしました</string>

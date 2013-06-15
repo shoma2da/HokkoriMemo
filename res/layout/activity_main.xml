@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:text="@string/title"
         android:gravity="center"
-        android:layout_margin="20dip"
+        android:layout_marginTop="20dip"
+        android:textSize="20sp"
         />
     
     <LinearLayout
@@ -18,69 +19,81 @@
         android:layout_height="fill_parent"
         android:orientation="horizontal"
         android:baselineAligned="false"
+        android:gravity="center"
         >
         
         <LinearLayout
-            android:layout_width="0dip"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
             <Button
                 android:id="@+id/button_trip"
-                android:layout_width="fill_parent"
-                android:layout_height="0dip"
-                android:layout_margin="20dip"
-                android:layout_weight="1"
+                android:layout_margin="5dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_trip"
+                android:gravity="bottom|center"
+                android:textColor="@android:color/white"
                 android:text="@string/trip" />
-
+            
             <Button
                 android:id="@+id/button_words"
-                android:layout_width="fill_parent"
-                android:layout_height="0dip"
-                android:layout_margin="20dip"
-                android:layout_weight="1"
+                android:layout_margin="5dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_words"
+                android:gravity="bottom|center"
+                android:textColor="@android:color/white"
                 android:text="@string/words" />
 
             <Button
                 android:id="@+id/button_present"
-                android:layout_width="fill_parent"
+                android:layout_margin="5dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dip"
-                android:layout_weight="1"
+                android:background="@drawable/icon_present"
+                android:gravity="bottom|center"
+                android:textColor="@android:color/white"
                 android:text="@string/present" />
+
 
         </LinearLayout>
         
         <LinearLayout
-            android:layout_width="0dip"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             
             <Button
                 android:id="@+id/button_family"
-                android:layout_width="fill_parent"
-                android:layout_height="0dip"
-                android:layout_margin="20dip"
-                android:layout_weight="1"
+                android:layout_margin="5dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_family"
+                android:gravity="bottom|center"
+                android:textColor="@android:color/white"
                 android:text="@string/family" />
 
             <Button
                 android:id="@+id/button_laugh"
-                android:layout_width="fill_parent"
-                android:layout_height="0dip"
-                android:layout_margin="20dip"
-                android:layout_weight="1"
+                android:layout_margin="5dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_laugh"
+                android:gravity="bottom|center"
+                android:textColor="@android:color/white"
                 android:text="@string/laugh" />
 
             <Button
                 android:id="@+id/button_memory"
-                android:layout_width="fill_parent"
+                android:layout_margin="5dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dip"
-                android:layout_weight="1"
+                android:background="@drawable/icon_memory"
+                android:gravity="bottom|center"
+                android:textColor="@android:color/white"
                 android:text="@string/memory" />
 
             </LinearLayout>

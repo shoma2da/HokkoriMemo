@@ -124,7 +124,7 @@ public class DetailActivity extends Activity {
     }
     
     private void addHokkoriToListView(Hokkori hokkori) {
-        mAdapter.add(hokkori);
+        mAdapter.insert(hokkori, 0);
         
         String countText = getString(R.string.hokkori_count, mDetailData.getHokkoriList().size());
         ((TextView)findViewById(R.id.text_type_count)).setText(countText);
