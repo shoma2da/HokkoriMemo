@@ -11,4 +11,7 @@
     <string name="laugh">笑う</string>
     <string name="present">プレゼント</string>
     <string name="memory">思い出</string>
+    
+    <string name="hokkori">ほっこり</string>
+    <string name="hokkori_memo">ほっこりメモ</string>
 </resources>
