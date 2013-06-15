@@ -20,7 +20,6 @@ import com.example.withpartner.model.SQLiteDetailData;
 
 public class DetailActivity extends Activity {
     public static final String PARAM_TYPE = "type";
-    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +28,12 @@ public class DetailActivity extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail);
         
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        ((ListView)findViewById(R.id.listview_hokkori)).setAdapter(mAdapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        ((ListView)findViewById(R.id.listview_hokkori)).setAdapter(adapter);
         
         DetailData detailData = getDetailData();
-        updateViews(detailData);
-        initViews(detailData);
+        updateViews(detailData, adapter);
+        initViews(detailData, adapter);
     }
     
     private DetailData getDetailData() {
@@ -42,17 +41,17 @@ public class DetailActivity extends Activity {
         return SQLiteDetailData.create(getApplicationContext(), type);
     }
     
-    private void updateViews(DetailData detailData) {
+    private void updateViews(DetailData detailData, ArrayAdapter<String> adapter) {
         ((ImageView)findViewById(R.id.image_type_icon)).setImageResource(detailData.getImageResourceId());
         ((TextView)findViewById(R.id.text_type_title)).setText(detailData.getTitle());
         
         for (Iterator<String> iterator = detailData.getHokkoriList().iterator(); iterator.hasNext(); ) {
             String hokkori = iterator.next();
-            addHokkori(hokkori);
+            addHokkori(adapter, hokkori);
         }
     }
     
-    private void initViews(final DetailData detailData) {
+    private void initViews(final DetailData detailData, final ArrayAdapter<String> adapter) {
         final EditText editText = (EditText)findViewById(R.id.edittext_hokkori);
         final View hokkoriAddButton = findViewById(R.id.button_hokkori_add);
         hokkoriAddButton.setClickable(false);
@@ -75,13 +74,13 @@ public class DetailActivity extends Activity {
                 String hokkori = editText.getText().toString();
                 boolean result = detailData.addHokkoriList(hokkori);
                 if (result) {
-                    addHokkori(hokkori);
+                    addHokkori(adapter, hokkori);
                 }
             }
         });
     }
     
-    private void addHokkori(String hokkori) {
-        mAdapter.add(hokkori);
+    private void addHokkori(ArrayAdapter<String> adapter, String hokkori) {
+        adapter.add(hokkori);
     }
 }
