@@ -2,7 +2,13 @@
 <resources>
 
     <string name="app_name">WithPartner</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    
+    <string name="title">パートナーとしたいこと</string>
 
+    <string name="trip">おでかけ</string>
+    <string name="family">家族</string>
+    <string name="words">愛の言葉</string>
+    <string name="laugh">笑う</string>
+    <string name="present">プレゼント</string>
+    <string name="memory">思い出</string>
 </resources>
