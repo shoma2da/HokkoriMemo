@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.withpartner.component.HokkoriAdapter;
 import com.example.withpartner.data.Hokkori;
 import com.example.withpartner.model.DetailData;
 import com.example.withpartner.model.SQLiteDetailData;
@@ -23,8 +24,8 @@ public class DetailActivity extends Activity {
     public static final String PARAM_TYPE = "type";
     
     private DetailData mDetailData;
-    private ArrayAdapter<String> mAdapter;
-
+    private ArrayAdapter<Hokkori> mAdapter;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +33,11 @@ public class DetailActivity extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail);
         
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        mAdapter = new HokkoriAdapter(this);
         ((ListView)findViewById(R.id.listview_hokkori)).setAdapter(mAdapter);
         mDetailData = getDetailData();
         
-        initViews(mDetailData, mAdapter);
+        initViews();
     }
     
     @Override
@@ -57,11 +58,11 @@ public class DetailActivity extends Activity {
         
         for (Iterator<Hokkori> iterator = mDetailData.getHokkoriList().iterator(); iterator.hasNext(); ) {
             Hokkori hokkori = iterator.next();
-            addHokkori(mAdapter, hokkori);
+            addHokkoriToListView(hokkori);
         }
     }
     
-    private void initViews(final DetailData detailData, final ArrayAdapter<String> adapter) {
+    private void initViews() {
         final EditText editText = (EditText)findViewById(R.id.edittext_hokkori);
         final View hokkoriAddButton = findViewById(R.id.button_hokkori_add);
         hokkoriAddButton.setClickable(false);
@@ -82,15 +83,15 @@ public class DetailActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Hokkori hokkori = new Hokkori(editText.getText().toString(), System.currentTimeMillis());
-                boolean result = detailData.addHokkoriList(hokkori);
+                boolean result = mDetailData.addHokkoriList(hokkori);
                 if (result) {
-                    addHokkori(adapter, hokkori);
+                    addHokkoriToListView(hokkori);
                 }
             }
         });
     }
     
-    private void addHokkori(ArrayAdapter<String> adapter, Hokkori hokkori) {
-        adapter.add(hokkori.getText());
+    private void addHokkoriToListView(Hokkori hokkori) {
+        mAdapter.add(hokkori);
     }
 }
