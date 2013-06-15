@@ -3,6 +3,7 @@ package com.example.withpartner.model;
 import java.util.ArrayList;
 
 import com.example.withpartner.Constatns;
+import com.example.withpartner.data.Hokkori;
 
 import android.content.Context;
 
@@ -26,7 +27,7 @@ public abstract class SQLiteDetailData implements DetailData {
     }
     
     //TODO ダミーです！
-    private ArrayList<String> hokkoriList = new ArrayList<String>();
+    private ArrayList<Hokkori> hokkoriList = new ArrayList<Hokkori>();
     private Context context;
 
     public SQLiteDetailData(Context context) {
@@ -36,17 +37,17 @@ public abstract class SQLiteDetailData implements DetailData {
     protected abstract String getTableName();
     
     @Override
-    public final ArrayList<String> getHokkoriList() {
-        return new ArrayList<String>(hokkoriList);
+    public final ArrayList<Hokkori> getHokkoriList() {
+        return new ArrayList<Hokkori>(hokkoriList);
     }
     
     @Override
-    public final boolean addHokkoriList(String hokkori) {
+    public final boolean addHokkoriList(Hokkori hokkori) {
         return this.hokkoriList.add(hokkori);
     }
     
     @Override
-    public final boolean removeHokkoriList(String hokkori) {
+    public final boolean removeHokkoriList(Hokkori hokkori) {
         return this.hokkoriList.remove(hokkori);
     }
     

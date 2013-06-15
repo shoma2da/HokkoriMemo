@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.withpartner.data.Hokkori;
 import com.example.withpartner.model.DetailData;
 import com.example.withpartner.model.SQLiteDetailData;
 
@@ -45,8 +46,8 @@ public class DetailActivity extends Activity {
         ((ImageView)findViewById(R.id.image_type_icon)).setImageResource(detailData.getImageResourceId());
         ((TextView)findViewById(R.id.text_type_title)).setText(detailData.getTitle());
         
-        for (Iterator<String> iterator = detailData.getHokkoriList().iterator(); iterator.hasNext(); ) {
-            String hokkori = iterator.next();
+        for (Iterator<Hokkori> iterator = detailData.getHokkoriList().iterator(); iterator.hasNext(); ) {
+            Hokkori hokkori = iterator.next();
             addHokkori(adapter, hokkori);
         }
     }
@@ -71,7 +72,7 @@ public class DetailActivity extends Activity {
         hokkoriAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String hokkori = editText.getText().toString();
+                Hokkori hokkori = new Hokkori(editText.getText().toString(), System.currentTimeMillis());
                 boolean result = detailData.addHokkoriList(hokkori);
                 if (result) {
                     addHokkori(adapter, hokkori);
@@ -80,7 +81,7 @@ public class DetailActivity extends Activity {
         });
     }
     
-    private void addHokkori(ArrayAdapter<String> adapter, String hokkori) {
-        adapter.add(hokkori);
+    private void addHokkori(ArrayAdapter<String> adapter, Hokkori hokkori) {
+        adapter.add(hokkori.getStr());
     }
 }

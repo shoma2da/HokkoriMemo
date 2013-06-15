@@ -2,12 +2,14 @@ package com.example.withpartner.model;
 
 import java.util.ArrayList;
 
+import com.example.withpartner.data.Hokkori;
+
 public interface DetailData {
     
     String getTitle();
     int getImageResourceId();
-    ArrayList<String> getHokkoriList();
-    boolean addHokkoriList(String hokkori);
-    boolean removeHokkoriList(String hokkori);
+    ArrayList<Hokkori> getHokkoriList();
+    boolean addHokkoriList(Hokkori hokkori);
+    boolean removeHokkoriList(Hokkori hokkori);
     
 }
