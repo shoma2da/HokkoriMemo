@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.withpartner.model.DetailData;
 import com.example.withpartner.model.SQLiteDetailData;
