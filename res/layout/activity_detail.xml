@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_type_title"
             android:layout_toRightOf="@id/image_type_icon"
-            android:text="TESTTEST"
             />
     </RelativeLayout>
 
