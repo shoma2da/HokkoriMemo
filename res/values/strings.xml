@@ -14,4 +14,9 @@
     
     <string name="hokkori">ほっこり</string>
     <string name="hokkori_memo">ほっこりメモ</string>
+    
+    <string name="delete_confirm">削除してよろしいですか？</string>
+    
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

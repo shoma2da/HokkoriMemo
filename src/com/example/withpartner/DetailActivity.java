@@ -3,12 +3,15 @@ package com.example.withpartner;
 import java.util.Iterator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,16 +37,9 @@ public class DetailActivity extends Activity {
         setContentView(R.layout.activity_detail);
         
         mAdapter = new HokkoriAdapter(this);
-        ((ListView)findViewById(R.id.listview_hokkori)).setAdapter(mAdapter);
         mDetailData = getDetailData();
         
         initViews();
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        
         updateViews();
     }
     
@@ -60,6 +56,7 @@ public class DetailActivity extends Activity {
             Hokkori hokkori = iterator.next();
             addHokkoriToListView(hokkori);
         }
+        
     }
     
     private void initViews() {
@@ -86,6 +83,39 @@ public class DetailActivity extends Activity {
                 boolean result = mDetailData.addHokkoriList(hokkori);
                 if (result) {
                     addHokkoriToListView(hokkori);
+                }
+            }
+        });
+        
+        ListView listView = (ListView)findViewById(R.id.listview_hokkori);
+        listView.setAdapter(mAdapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
+                new AlertDialog.Builder(DetailActivity.this).setTitle(R.string.delete_confirm)
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+    
+                        }
+                    })
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleleHokkori(parent, position);
+                        }
+                    })
+                .create().show();
+                
+                
+                return false;
+            }
+            private void deleleHokkori(AdapterView<?> parent, int position) {
+                HokkoriAdapter adapter = (HokkoriAdapter)parent.getAdapter();
+                Hokkori hokkori = adapter.getItem(position);
+                
+                if (mDetailData.removeHokkoriList(hokkori)) {
+                    adapter.remove(hokkori);
                 }
             }
         });
