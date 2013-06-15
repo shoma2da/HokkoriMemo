@@ -15,7 +15,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:src="@android:drawable/sym_def_app_icon"
             android:contentDescription="@null"
             />
         <TextView
@@ -23,7 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/image_type_icon"
-            android:text="testtest"
             />
         <TextView
             android:id="@+id/text_type_count"
@@ -42,13 +40,16 @@
         >
 
         <EditText
+            android:id="@+id/edittext_hokkori"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_weight="1"
+            android:singleLine="true"
             android:hint="@string/hokkori_memo"
             android:ems="10" />
 
         <Button
+            android:id="@+id/button_hokkori_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
