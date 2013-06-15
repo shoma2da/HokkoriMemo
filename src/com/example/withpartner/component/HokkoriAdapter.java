@@ -1,8 +1,9 @@
 package com.example.withpartner.component;
 
-import com.example.withpartner.R;
-import com.example.withpartner.data.Hokkori;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.withpartner.R;
+import com.example.withpartner.data.Hokkori;
+
 public class HokkoriAdapter extends ArrayAdapter<Hokkori> {
+    @SuppressLint("SimpleDateFormat")
+    private static final SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     
     private LayoutInflater mInflater;
     private int mLayoutId;
@@ -33,7 +39,7 @@ public class HokkoriAdapter extends ArrayAdapter<Hokkori> {
         TextView textView = (TextView)view.findViewById(R.id.textview_text);
         textView.setText(hokkori.getText());
         TextView dateView = (TextView)view.findViewById(R.id.textview_date);
-        dateView.setText("" + hokkori.getTime()); //TODO stringsに移動
+        dateView.setText(mFormat.format(new Date(hokkori.getTime())));
         
         return view;
     }

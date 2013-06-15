@@ -70,7 +70,7 @@ public abstract class SQLiteDetailData extends SQLiteOpenHelper implements Detai
             ArrayList<Hokkori> hokkoris = new ArrayList<Hokkori>();
             cursor.moveToFirst();
             while(cursor.moveToNext()) {
-                Hokkori hokkori = new Hokkori(cursor.getInt(2), cursor.getString(1), cursor.getInt(0));
+                Hokkori hokkori = new Hokkori(cursor.getInt(2), cursor.getString(1), cursor.getLong(0));
                 hokkoris.add(hokkori);
             }
         
