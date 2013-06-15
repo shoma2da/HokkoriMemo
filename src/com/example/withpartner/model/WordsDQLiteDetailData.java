@@ -22,7 +22,7 @@ public class WordsDQLiteDetailData extends SQLiteDetailData {
     }
 
     @Override
-    protected String getTableName() {
+    protected String getTypeName() {
         return Constatns.WORDS;
     }
 

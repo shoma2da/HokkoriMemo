@@ -23,7 +23,7 @@ public class TripSQLiteDetailData extends SQLiteDetailData {
     }
 
     @Override
-    protected String getTableName() {
+    protected String getTypeName() {
         return TABLE_NAME;
     }
 

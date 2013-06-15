@@ -22,7 +22,7 @@ public class FamilySQliteDetailData extends SQLiteDetailData {
     }
 
     @Override
-    protected String getTableName() {
+    protected String getTypeName() {
         return Constatns.FAMILY;
     }
 

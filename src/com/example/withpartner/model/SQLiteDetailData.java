@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import com.example.withpartner.Constatns;
 import com.example.withpartner.data.Hokkori;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
-public abstract class SQLiteDetailData implements DetailData {
+public abstract class SQLiteDetailData extends SQLiteOpenHelper implements DetailData {
     
     public static SQLiteDetailData create(Context context, String type) {
         if (Constatns.TRIP.equals(type)) {
@@ -26,29 +30,91 @@ public abstract class SQLiteDetailData implements DetailData {
         return null;
     }
     
-    //TODO ダミーです！
-    private ArrayList<Hokkori> hokkoriList = new ArrayList<Hokkori>();
+    private static final String DB_NAME = "hokkori.db";
+    private static final int DB_VERSION = 1;
+    private static final String TABLE_HOKKORI_NAME = "hokkori";
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_DATE = "date_millis";
+    private static final String COLUMN_TEXT = "text";
+    private static final String COLUMN_TYPE = "type";
+    
     private Context context;
 
     public SQLiteDetailData(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
     }
     
-    protected abstract String getTableName();
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(
+            String.format(
+                "CREATE TABLE IF NOT EXISTS %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, %s INTEGER NOT NULL, %s TEXT NOT NULL, %s TEXT NOT NULL ) ",
+                TABLE_HOKKORI_NAME, COLUMN_ID, COLUMN_DATE, COLUMN_TEXT, COLUMN_TYPE
+            )
+        );
+    }
+    
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        throw new UnsupportedOperationException();
+    }
+    
+    protected abstract String getTypeName();
     
     @Override
     public final ArrayList<Hokkori> getHokkoriList() {
-        return new ArrayList<Hokkori>(hokkoriList);
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(String.format("SELECT %s, %s, %s FROM %s WHERE %s = ?", COLUMN_DATE, COLUMN_TEXT, COLUMN_ID, TABLE_HOKKORI_NAME, COLUMN_TYPE), new String[]{ this.getTypeName() });
+        try {
+            ArrayList<Hokkori> hokkoris = new ArrayList<Hokkori>();
+            cursor.moveToFirst();
+            while(cursor.moveToNext()) {
+                Hokkori hokkori = new Hokkori(cursor.getInt(2), cursor.getString(1), cursor.getInt(0));
+                hokkoris.add(hokkori);
+            }
+        
+            return hokkoris;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<Hokkori>();
+        } finally {
+            cursor.close();
+            db.close();
+        }
     }
     
     @Override
     public final boolean addHokkoriList(Hokkori hokkori) {
-        return this.hokkoriList.add(hokkori);
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_TYPE, getTypeName());
+            values.put(COLUMN_DATE, hokkori.getTime());
+            values.put(COLUMN_TEXT, hokkori.getText());
+            
+            long result = db.insert(TABLE_HOKKORI_NAME, null, values);
+            return result != -1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            db.close();
+        }
     }
     
     @Override
     public final boolean removeHokkoriList(Hokkori hokkori) {
-        return this.hokkoriList.remove(hokkori);
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            int result = db.delete(TABLE_HOKKORI_NAME, COLUMN_ID + " = ?", new String[]{ String.valueOf(hokkori.getId()) });
+            return result == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            db.close();
+        }
     }
     
     protected Context getContext() {

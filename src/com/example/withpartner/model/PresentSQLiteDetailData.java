@@ -22,7 +22,7 @@ public class PresentSQLiteDetailData extends SQLiteDetailData {
     }
 
     @Override
-    protected String getTableName() {
+    protected String getTypeName() {
         return Constatns.PRESENT;
     }
 

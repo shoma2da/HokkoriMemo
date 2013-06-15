@@ -82,6 +82,6 @@ public class DetailActivity extends Activity {
     }
     
     private void addHokkori(ArrayAdapter<String> adapter, Hokkori hokkori) {
-        adapter.add(hokkori.getStr());
+        adapter.add(hokkori.getText());
     }
 }
