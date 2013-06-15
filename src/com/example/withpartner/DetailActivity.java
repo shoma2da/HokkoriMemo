@@ -21,6 +21,9 @@ import com.example.withpartner.model.SQLiteDetailData;
 
 public class DetailActivity extends Activity {
     public static final String PARAM_TYPE = "type";
+    
+    private DetailData mDetailData;
+    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +32,18 @@ public class DetailActivity extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail);
         
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        ((ListView)findViewById(R.id.listview_hokkori)).setAdapter(adapter);
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        ((ListView)findViewById(R.id.listview_hokkori)).setAdapter(mAdapter);
+        mDetailData = getDetailData();
         
-        DetailData detailData = getDetailData();
-        updateViews(detailData, adapter);
-        initViews(detailData, adapter);
+        initViews(mDetailData, mAdapter);
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        
+        updateViews();
     }
     
     private DetailData getDetailData() {
@@ -42,13 +51,13 @@ public class DetailActivity extends Activity {
         return SQLiteDetailData.create(getApplicationContext(), type);
     }
     
-    private void updateViews(DetailData detailData, ArrayAdapter<String> adapter) {
-        ((ImageView)findViewById(R.id.image_type_icon)).setImageResource(detailData.getImageResourceId());
-        ((TextView)findViewById(R.id.text_type_title)).setText(detailData.getTitle());
+    private void updateViews() {
+        ((ImageView)findViewById(R.id.image_type_icon)).setImageResource(mDetailData.getImageResourceId());
+        ((TextView)findViewById(R.id.text_type_title)).setText(mDetailData.getTitle());
         
-        for (Iterator<Hokkori> iterator = detailData.getHokkoriList().iterator(); iterator.hasNext(); ) {
+        for (Iterator<Hokkori> iterator = mDetailData.getHokkoriList().iterator(); iterator.hasNext(); ) {
             Hokkori hokkori = iterator.next();
-            addHokkori(adapter, hokkori);
+            addHokkori(mAdapter, hokkori);
         }
     }
     
