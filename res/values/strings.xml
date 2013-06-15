@@ -5,14 +5,15 @@
     
     <string name="title">パートナーとしたいこと</string>
 
-    <string name="trip">おでかけ</string>
-    <string name="family">家族</string>
-    <string name="words">愛の言葉</string>
-    <string name="laugh">笑う</string>
-    <string name="present">プレゼント</string>
-    <string name="memory">思い出</string>
+    <string name="trip">おでかけする</string>
+    <string name="family">家族と楽しむ</string>
+    <string name="words">感謝を伝える</string>
+    <string name="laugh">一緒に笑う</string>
+    <string name="present">プレゼントを贈りあう</string>
+    <string name="memory">思い出を振り返る</string>
     
     <string name="hokkori">ほっこり</string>
+    <string name="hokkori_count">%1$d回ほっこりしました</string>
     <string name="hokkori_memo">ほっこりメモ</string>
     
     <string name="delete_confirm">削除してよろしいですか？</string>

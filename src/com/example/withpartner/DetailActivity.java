@@ -51,6 +51,8 @@ public class DetailActivity extends Activity {
     private void updateViews() {
         ((ImageView)findViewById(R.id.image_type_icon)).setImageResource(mDetailData.getImageResourceId());
         ((TextView)findViewById(R.id.text_type_title)).setText(mDetailData.getTitle());
+        String countText = getString(R.string.hokkori_count, mDetailData.getHokkoriList().size());
+        ((TextView)findViewById(R.id.text_type_count)).setText(countText);
         
         for (Iterator<Hokkori> iterator = mDetailData.getHokkoriList().iterator(); iterator.hasNext(); ) {
             Hokkori hokkori = iterator.next();
@@ -123,5 +125,8 @@ public class DetailActivity extends Activity {
     
     private void addHokkoriToListView(Hokkori hokkori) {
         mAdapter.add(hokkori);
+        
+        String countText = getString(R.string.hokkori_count, mDetailData.getHokkoriList().size());
+        ((TextView)findViewById(R.id.text_type_count)).setText(countText);
     }
 }
