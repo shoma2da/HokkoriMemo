@@ -20,17 +20,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void initViews() {
-        findViewById(R.id.button_family).setOnClickListener(this);
-        findViewById(R.id.button_laugh).setOnClickListener(this);
-        findViewById(R.id.button_memory).setOnClickListener(this);
-        findViewById(R.id.button_present).setOnClickListener(this);
-        findViewById(R.id.button_words).setOnClickListener(this);
-        findViewById(R.id.button_trip).setOnClickListener(this);
+        setListenerAndTag(findViewById(R.id.button_family), Constatns.FAMILY);
+        setListenerAndTag(findViewById(R.id.button_laugh), Constatns.LAUGH);
+        setListenerAndTag(findViewById(R.id.button_memory), Constatns.MEMORY);
+        setListenerAndTag(findViewById(R.id.button_present), Constatns.PRESENT);
+        setListenerAndTag(findViewById(R.id.button_words), Constatns.WORDS);
+        setListenerAndTag(findViewById(R.id.button_trip), Constatns.TRIP);
+    }
+    
+    private void setListenerAndTag(View v, String tag) {
+        v.setTag(tag);
+        v.setOnClickListener(this);
     }
     
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(DetailActivity.PARAM_TYPE, v.getTag().toString());
         startActivity(intent);
     }
 }
