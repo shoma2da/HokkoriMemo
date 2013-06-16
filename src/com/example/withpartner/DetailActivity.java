@@ -75,9 +75,9 @@ public class DetailActivity extends Activity {
                 return v != null && v.getText() != null && v.getText().toString().equals("") == false;
             }
             private void addHokkoriData(Hokkori hokkori) {
-                boolean result = mDetailData.addHokkoriList(hokkori);
-                if (result) {
-                    addHokkoriToListView(hokkori);
+                Hokkori result = mDetailData.addHokkoriList(hokkori);
+                if (result != null) {
+                    addHokkoriToListView(result);
                     editText.setText("");
                 }
             }

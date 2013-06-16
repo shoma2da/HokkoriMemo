@@ -87,7 +87,7 @@ public abstract class SQLiteDetailData extends SQLiteOpenHelper implements Detai
     }
     
     @Override
-    public final boolean addHokkoriList(Hokkori hokkori) {
+    public final Hokkori addHokkoriList(Hokkori hokkori) {
         SQLiteDatabase db = getWritableDatabase();
         try {
             ContentValues values = new ContentValues();
@@ -96,10 +96,13 @@ public abstract class SQLiteDetailData extends SQLiteOpenHelper implements Detai
             values.put(COLUMN_TEXT, hokkori.getText());
             
             long result = db.insert(TABLE_HOKKORI_NAME, null, values);
-            return result != -1;
+            if (result != -1) {
+                return new Hokkori((int)result, hokkori.getText(), hokkori.getTime());
+            }
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         } finally {
             db.close();
         }

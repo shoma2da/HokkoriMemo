@@ -9,7 +9,7 @@ public interface DetailData {
     String getTitle();
     int getImageResourceId();
     ArrayList<Hokkori> getHokkoriList();
-    boolean addHokkoriList(Hokkori hokkori);
+    Hokkori addHokkoriList(Hokkori hokkori);
     boolean removeHokkoriList(Hokkori hokkori);
     
 }
