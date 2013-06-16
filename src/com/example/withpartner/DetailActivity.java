@@ -64,15 +64,14 @@ public class DetailActivity extends Activity {
     private void initViews() {
         final EditText editText = (EditText)findViewById(R.id.edittext_hokkori);
         final View hokkoriAddButton = findViewById(R.id.button_hokkori_add);
-        hokkoriAddButton.setClickable(false);
         
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (null == editText.getText() || "".equals(editText.getText().toString()) ) {
-                    hokkoriAddButton.setClickable(false);
+                    hokkoriAddButton.setEnabled(false);
                 } else {
-                    hokkoriAddButton.setClickable(true);
+                    hokkoriAddButton.setEnabled(true);
                 }
             }
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -85,6 +84,7 @@ public class DetailActivity extends Activity {
                 boolean result = mDetailData.addHokkoriList(hokkori);
                 if (result) {
                     addHokkoriToListView(hokkori);
+                    editText.setText("");
                 }
             }
         });
