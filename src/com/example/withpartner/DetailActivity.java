@@ -6,8 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -63,24 +62,19 @@ public class DetailActivity extends Activity {
     
     private void initViews() {
         final EditText editText = (EditText)findViewById(R.id.edittext_hokkori);
-        final View hokkoriAddButton = findViewById(R.id.button_hokkori_add);
-        
-        editText.addTextChangedListener(new TextWatcher() {
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (null == editText.getText() || "".equals(editText.getText().toString()) ) {
-                    hokkoriAddButton.setEnabled(false);
-                } else {
-                    hokkoriAddButton.setEnabled(true);
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (canAddText(v)) {
+                    Hokkori hokkori = new Hokkori(v.getText().toString(), System.currentTimeMillis());
+                    addHokkoriData(hokkori);
                 }
+                return false;
             }
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-            @Override public void afterTextChanged(Editable s) { }
-        });
-        hokkoriAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Hokkori hokkori = new Hokkori(editText.getText().toString(), System.currentTimeMillis());
+            private boolean canAddText(TextView v) {
+                return v != null && v.getText() != null && v.getText().toString().equals("") == false;
+            }
+            private void addHokkoriData(Hokkori hokkori) {
                 boolean result = mDetailData.addHokkoriList(hokkori);
                 if (result) {
                     addHokkoriToListView(hokkori);
