@@ -85,9 +85,9 @@ public class DetailActivity extends Activity {
         
         ListView listView = (ListView)findViewById(R.id.listview_hokkori);
         listView.setAdapter(mAdapter);
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
+            public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
                 new AlertDialog.Builder(DetailActivity.this).setTitle(R.string.delete_confirm)
                     .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                         @Override
@@ -102,9 +102,6 @@ public class DetailActivity extends Activity {
                         }
                     })
                 .create().show();
-                
-                
-                return false;
             }
             private void deleleHokkori(AdapterView<?> parent, int position) {
                 HokkoriAdapter adapter = (HokkoriAdapter)parent.getAdapter();
