@@ -16,7 +16,8 @@
     
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:baselineAligned="false"
         android:gravity="center"
@@ -98,5 +99,11 @@
 
             </LinearLayout>
     </LinearLayout>
+    
+    <include
+        android:layout_height="50dip"
+        android:layout_width="fill_parent"
+        android:gravity="center"
+        layout="@layout/layout_ad"/>
 
 </LinearLayout>
