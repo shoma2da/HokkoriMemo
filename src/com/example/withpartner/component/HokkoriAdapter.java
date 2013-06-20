@@ -50,8 +50,9 @@ public class HokkoriAdapter extends ArrayAdapter<Hokkori> {
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, String.format("%sに「%s」 #%s",
                                                                     dateText,
-                                                                    getContext().getString(R.string.app_name),
-                                                                    hokkori.getText()));
+                                                                    hokkori.getText(),
+                                                                    getContext().getString(R.string.app_name)
+                                                                ));
                 getContext().startActivity(intent);
             }
         });
