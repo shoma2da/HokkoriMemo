@@ -20,4 +20,6 @@
     
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    
+    <string name="share">share</string>
 </resources>

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,26 @@ public class HokkoriAdapter extends ArrayAdapter<Hokkori> {
             view = mInflater.inflate(mLayoutId, null);
         }
         
-        Hokkori hokkori = getItem(position);
+        final Hokkori hokkori = getItem(position);
+        final String dateText = mFormat.format(new Date(hokkori.getTime()));
         
         TextView textView = (TextView)view.findViewById(R.id.textview_text);
         textView.setText(hokkori.getText());
         TextView dateView = (TextView)view.findViewById(R.id.textview_date);
-        dateView.setText(mFormat.format(new Date(hokkori.getTime())));
+        dateView.setText(dateText);
+        TextView shareView = (TextView)view.findViewById(R.id.text_share);
+        shareView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, String.format("%sに「%s」 #%s",
+                                                                    dateText,
+                                                                    getContext().getString(R.string.app_name),
+                                                                    hokkori.getText()));
+                getContext().startActivity(intent);
+            }
+        });
         
         return view;
     }
