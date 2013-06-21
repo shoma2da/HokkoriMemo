@@ -1,4 +1,4 @@
-package com.example.withpartner;
+package com.tech_tec.withpartner;
 
 public class Constatns {
     public static final String FAMILY = "family";

@@ -1,4 +1,4 @@
-package com.example.withpartner;
+package com.tech_tec.withpartner;
 
 import java.util.Iterator;
 
@@ -18,10 +18,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.withpartner.component.HokkoriAdapter;
-import com.example.withpartner.data.Hokkori;
-import com.example.withpartner.model.DetailData;
-import com.example.withpartner.model.SQLiteDetailData;
+import com.tech_tec.withpartner.component.HokkoriAdapter;
+import com.tech_tec.withpartner.data.Hokkori;
+import com.tech_tec.withpartner.model.DetailData;
+import com.tech_tec.withpartner.model.SQLiteDetailData;
 
 public class DetailActivity extends Activity {
     public static final String PARAM_TYPE = "type";

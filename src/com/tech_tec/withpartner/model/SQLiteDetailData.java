@@ -1,9 +1,9 @@
-package com.example.withpartner.model;
+package com.tech_tec.withpartner.model;
 
 import java.util.ArrayList;
 
-import com.example.withpartner.Constatns;
-import com.example.withpartner.data.Hokkori;
+import com.tech_tec.withpartner.Constatns;
+import com.tech_tec.withpartner.data.Hokkori;
 
 import android.content.ContentValues;
 import android.content.Context;

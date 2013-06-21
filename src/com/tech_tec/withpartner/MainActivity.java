@@ -1,4 +1,4 @@
-package com.example.withpartner;
+package com.tech_tec.withpartner;
 
 import com.bugsense.trace.BugSenseHandler;
 

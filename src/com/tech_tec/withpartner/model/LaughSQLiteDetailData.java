@@ -1,7 +1,7 @@
-package com.example.withpartner.model;
+package com.tech_tec.withpartner.model;
 
-import com.example.withpartner.Constatns;
-import com.example.withpartner.R;
+import com.tech_tec.withpartner.Constatns;
+import com.tech_tec.withpartner.R;
 
 import android.content.Context;
 

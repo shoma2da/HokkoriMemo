@@ -1,4 +1,4 @@
-package com.example.withpartner.component;
+package com.tech_tec.withpartner.component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.withpartner.R;
-import com.example.withpartner.data.Hokkori;
+import com.tech_tec.withpartner.R;
+import com.tech_tec.withpartner.data.Hokkori;
 
 public class HokkoriAdapter extends ArrayAdapter<Hokkori> {
     @SuppressLint("SimpleDateFormat")

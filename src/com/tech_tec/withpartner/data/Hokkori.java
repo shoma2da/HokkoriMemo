@@ -1,4 +1,4 @@
-package com.example.withpartner.data;
+package com.tech_tec.withpartner.data;
 
 public class Hokkori {
     private String str;
